@@ -1,27 +1,27 @@
 function getDistinctCategories (raw_data, categorize_by) {
-    let allCategory = [];
+    let all_category = [];
     for (let items of raw_data) {
-      if (!allCategory.includes(items[categorize_by])) {
-        allCategory.push(items[categorize_by]);
+      if (!all_category.includes(items[categorize_by])) {
+        all_category.push(items[categorize_by]);
       }
     }
-    return allCategory;
+    return all_category;
   };
   function getElementsByCategory  (data, categorize_by, categorization_value)  {
-    var filteredItems = data.filter(
+    let filtered_items = data.filter(
       (items) => items[categorize_by] === categorization_value
     );
-    return filteredItems;
+    return filtered_items;
   };
 
-  function get_property_values (data, property) {
+  function getPropertyValues (data, property) {
     let values_of_property = data.map((items) => {
       return items[property];
     });
     return values_of_property;
   };
 
-  function get_avg  (arr) {
+  function getAvg  (arr) {
     // rounding off to 2nd value after decimal.
     return (
       Math.round(
@@ -34,31 +34,31 @@ function getDistinctCategories (raw_data, categorize_by) {
     );
   };
 
- export function get_bar_graph_data () {
+ export function getBarGraphData () {
     // get distinct categories
-    var all_categories = getDistinctCategories(
+    let all_categories = getDistinctCategories(
       this.raw_data,
       this.x_axis_key
     );
 
     // contains data for plotting on Y axis
-    var avg_values = [];
+    let avg_values = [];
 
     for (let items of all_categories) {
         // get all elements of one category
-      var allElementsByProperty = getElementsByCategory(
+      var all_elements_by_property = getElementsByCategory(
         this.raw_data,
         this.x_axis_key,
         items
       );
 
     //   get values for calculating the average
-      var req_property_values = get_property_values(
-        allElementsByProperty,
+      let req_property_values = getPropertyValues(
+        all_elements_by_property,
         this.y_axis_key
       );
     //   compute average value for plotting on the y axis
-      var avg_value = get_avg(req_property_values);
+      let avg_value = getAvg(req_property_values);
       avg_values.push(avg_value);
     }
 
@@ -68,8 +68,8 @@ function getDistinctCategories (raw_data, categorize_by) {
       y_axis: avg_values,
     };
   };
- export function get_scattered_graph_data () {
-    var scatter_plot_data = [];
+ export function getScatteredGraphData () {
+    let scatter_plot_data = [];
     for (let items of this.raw_data) {
       scatter_plot_data.push([
         items[this.x_axis_key],

@@ -2,7 +2,7 @@
 
 export function getOptionForGraph (){
     // generic options object
-    var options = {
+    let options = {
       responsive: true,
       scale: true,
       xAxis: {
