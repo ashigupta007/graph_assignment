@@ -12,7 +12,7 @@ export function getOptionForGraph (){
       },
       yAxis: {
         name: this.data.label_y,
-        nameGap : 30,
+        nameGap : 20,
         nameLocation: "center",
       },
       series: [
