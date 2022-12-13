@@ -4,6 +4,8 @@ import ReactECharts from "echarts-for-react";
 
 import wine_data from "./Wine-Data.json";
 
+import "./assets/style.css"
+
 import {get_bar_graph_data , get_scattered_graph_data} from "./helper"
 import {getOptionForGraph} from "./graph_option_generator"
 // key which defines the category of the alcohol
@@ -47,19 +49,20 @@ class App extends React.Component {
     // instead of importing json file, we can use fetch to get the data through an api call and use it further
 
     var barGraph = {
-      wine_data : wine_data,
-      ALCOHOL_CATEGORY_KEY : ALCOHOL_CATEGORY_KEY,
-      BAR_GRAPH_KEY : BAR_GRAPH_KEY,
+      raw_data : wine_data,
+      x_axis_key : ALCOHOL_CATEGORY_KEY,
+      y_axis_key : BAR_GRAPH_KEY,
     }
     var scatteredGraph = {
-      wine_data : wine_data,
-      SCATTERED_GRAPH_HORIZONTAL_KEY : SCATTERED_GRAPH_HORIZONTAL_KEY,
-      SCATTERED_GRAPH_VERTICAL_KEY : SCATTERED_GRAPH_VERTICAL_KEY,
+      raw_data : wine_data,
+      x_axis_key : SCATTERED_GRAPH_HORIZONTAL_KEY,
+      y_axis_key : SCATTERED_GRAPH_VERTICAL_KEY,
     }
 
     this.setState({
       // get_scattered_graph_data method is used to get numerical data for scattered graph data 
       scatter_plot_data: get_scattered_graph_data.call(scatteredGraph),
+
 
       // get_bar_graph_data gets the numerical data for bar graph
       bar_chart_data: get_bar_graph_data.call(barGraph),
@@ -68,7 +71,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={{ padding: "20px", maxWidth: "calc(100% - 40px)" }}>
+      <div>
         <h1>Scattered Graph</h1>
         <ReactECharts option={getOptionForGraph.call(
           {

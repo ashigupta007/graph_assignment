@@ -1,16 +1,18 @@
+// generating the options prop required for EchartsForReact library
+
 export function getOptionForGraph (){
+    // generic options object
     var options = {
       responsive: true,
       scale: true,
       xAxis: {
-        type:"",
-        data: [],
         name: this.data.label_x,
+        nameGap : 30,
         nameLocation: "center",
       },
       yAxis: {
-        type: "",
         name: this.data.label_y,
+        nameGap : 30,
         nameLocation: "center",
       },
       series: [
@@ -22,20 +24,20 @@ export function getOptionForGraph (){
       ],
       tooltip : {}
     };
-
+    // altering options object according to type of graph
     if(this.type === "scatter"){
-      delete options["xAxis"]["data"]
-      delete options["xAxis"]["type"]
-      delete options["yAxis"]["type"]
-
       options["series"][0]["data"] = this.data.plotting_data
     }
-    else{
+    else if(this.type === "bar"){
       options["xAxis"]["data"] =this.data.plotting_data["x_axis"]
       options["xAxis"]["type"] = "category"
       options["yAxis"]["type"] = "value"
 
       options["series"][0]["data"] = this.data.plotting_data["y_axis"]
     }
+    else{
+        throw new Error('Graph Type is not valid')
+    }
+
     return options
 }
