@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Getting Started with the App
+## Clone the repository 
+## Run 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### `yarn install`
+to install all the dependencies. After the installation, run `yarn start` to start the local server. It will open a tab in browser with address http://localhost:3000
+
 
 ## Available Scripts
 
